@@ -1,3 +1,11 @@
+"""
+this is scheme-generating script
+functions here generate schemes to run fluent cases automatically
+note: scheme3d() is a problem-specific fluent scheme generator- each problem requires adequate scheme
+qsubgen() is a .pbs file generator and is valid for any problem
+"""
+
+
 import math as m
 def scheme3d(filename, alpha, v, casename, meshname, path, savecase = False):
     x_comp = m.cos(m.radians(alpha))
@@ -66,7 +74,8 @@ def qsubgen(filename, scheme, console_output, nodes = 1, jobname = 'CDQ'):
 		f.write('echo Job finished at `date`\n')
 
 
-if __name__=='__main__':        
+if __name__=='__main__': 
+	# an example of usage is presented, but in general import above functions to master script
 	scheme3d('scheme.jou', 5, 30, 'case1', "/home/WK5521/Documents/mesh_study/mesh2/")
 	qsubgen("/home/WK5521/Documents/mesh_study/mesh2/que.pbs", "/home/WK5521/Documents/mesh_study/mesh2/case1.jou", "/home/WK5521/Documents/mesh_study/mesh2/output_case1.txt",2)
           
